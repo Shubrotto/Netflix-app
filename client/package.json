@@ -15,9 +15,11 @@
     "@mui/icons-material": "^5.14.19",
     "@mui/material": "^5.14.19",
     "@mui/styled-engine": "^5.14.19",
+    "axios": "^1.6.2",
     "material-icons": "^1.13.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.21.0",
     "sass": "^1.69.5"
   },
   "devDependencies": {

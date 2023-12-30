@@ -48,6 +48,6 @@ const moviesSchema = mongoose.Schema(
   { timeStamp: true }
 );
 
-const Movies = mongoose.Model("Movies", moviesSchema);
+const Movies = mongoose.model("Movies", moviesSchema);
 
-module.exports = { Movies };
+module.exports = Movies;
