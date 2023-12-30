@@ -8,6 +8,8 @@ const cors = require("cors");
 // router
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
+const movieRouter = require("./routes/moves");
+const listRouter = require("./routes/list");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -23,6 +25,8 @@ mongoose
 
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
+app.use("/api/movies", movieRouter);
+app.use("/api/lists", listRouter);
 
 app.listen(PORT, () => {
   console.log(`Server runging at http://localhost:${PORT}`);
