@@ -7,6 +7,7 @@ import {
 import "./listItem.scss";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const ListItem = ({ item, index }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -32,34 +33,36 @@ const ListItem = ({ item, index }) => {
   }, [item]);
 
   return (
-    <div
-      className="list_item"
-      style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
-      onMouseLeave={() => setIsHovered(false)}
-      onMouseEnter={() => setIsHovered(true)}
-    >
-      <img src={movie?.img} alt="" />
-      {isHovered && (
-        <>
-          <video src={movie?.trailer} autoPlay={true} loop />
-          <div className="item_info">
-            <div className="icons">
-              <PlayArrow className="icon" />
-              <Add className="icon" />
-              <ThumbUpAltOutlined className="icon" />
-              <ThumbDownAltOutlined className="icon" />
+    <Link to={{ pathname: "/watch", movie: movie }}>
+      <div
+        className="list_item"
+        style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
+        onMouseLeave={() => setIsHovered(false)}
+        onMouseEnter={() => setIsHovered(true)}
+      >
+        <img src={movie?.img} alt="" />
+        {isHovered && (
+          <>
+            <video src={movie?.trailer} autoPlay={true} loop />
+            <div className="item_info">
+              <div className="icons">
+                <PlayArrow className="icon" />
+                <Add className="icon" />
+                <ThumbUpAltOutlined className="icon" />
+                <ThumbDownAltOutlined className="icon" />
+              </div>
+              <div className="item_info_top">
+                <span>{movie.duration}</span>
+                <span className="limit">+{movie.limit}</span>
+                <span>{movie.year}</span>
+              </div>
+              <div className="desc">{movie.desc}</div>
+              <div className="genre">{movie.genre}</div>
             </div>
-            <div className="item_info_top">
-              <span>{movie.duration}</span>
-              <span className="limit">+{movie.limit}</span>
-              <span>{movie.year}</span>
-            </div>
-            <div className="desc">{movie.desc}</div>
-            <div className="genre">{movie.genre}</div>
-          </div>
-        </>
-      )}
-    </div>
+          </>
+        )}
+      </div>
+    </Link>
   );
 };
 
