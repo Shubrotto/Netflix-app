@@ -1,7 +1,29 @@
 import { InfoOutlined, PlayArrow } from "@mui/icons-material";
 import "./featured.scss";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Featured = ({ type }) => {
+  const [content, setContent] = useState({});
+  useEffect(() => {
+    const getRandomContent = async () => {
+      try {
+        const res = await axios.get(
+          `http://localhost:3000/api/movies/random?type=${type}`,
+          {
+            headers: {
+              token:
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODFjZWUyODczN2Y4MTNiNWRhNjdmMiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcwNTU4MjIxMSwiZXhwIjoxNzA2MDE0MjExfQ.wKlQ50GIL9RpeNXxD3MXlZxQZ2NJxmjwffz-Dzt6yH0",
+            },
+          }
+        );
+        setContent(res.data[0]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getRandomContent();
+  }, [type]);
   return (
     <div className="featured">
       {type && (
@@ -25,21 +47,10 @@ const Featured = ({ type }) => {
           </select>
         </div>
       )}
-      <img
-        src="https://shoutingstars.com/wp-content/uploads/2022/06/kk.jpg"
-        alt=""
-      />
+      <img src={content.img} alt="" />
       <div className="info">
-        <img
-          src="https://www.themoviedb.org/t/p/original/lXMeUVvpo49g563COiVtK8I8u8r.png"
-          alt=""
-        />
-        <span className="desc">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente,
-          culpa? Sunt, ad. Quisquam doloribus ipsam quis corrupti ipsa rerum,
-          ratione, blanditiis eos dignissimos deserunt mollitia, repellendus
-          eius praesentium expedita vitae!
-        </span>
+        <img src={content.imgTitle} alt="" />
+        <span className="desc">{content.desc}</span>
         <div className="buttons">
           <button className="play">
             <PlayArrow />
