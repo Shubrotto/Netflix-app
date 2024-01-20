@@ -58,7 +58,7 @@ router.get("/", verify, async (req, res) => {
   if (req.user.isAdmin) {
     try {
       const getAllUser = query
-        ? await User.find().sort({ _id: -1 }).limit(10)
+        ? await User.find().sort({ _id: -1 }).limit(5)
         : await User.find();
       res.status(201).json(getAllUser);
     } catch (error) {
@@ -73,20 +73,6 @@ router.get("/", verify, async (req, res) => {
 router.get("/stats", async (req, res) => {
   const today = new Date();
   const lastYear = today.getFullYear(today.getFullYear - 1);
-  const monthsArray = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
 
   try {
     const data = await User.aggregate([
