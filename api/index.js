@@ -8,7 +8,7 @@ const cors = require("cors");
 // router
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
-const movieRouter = require("./routes/moves");
+const movieRouter = require("./routes/movies");
 const listRouter = require("./routes/list");
 
 app.use(express.urlencoded({ extended: false }));
