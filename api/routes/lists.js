@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const List = require("../models/List");
-const verify = require("../routes/verifyToken");
+const verify = require("./verifyToken");
 
 // create
 router.post("/", verify, async (req, res) => {
@@ -46,7 +46,7 @@ router.get("/", verify, async (req, res) => {
         ]);
       }
     } else {
-      list = await List.aggregate([{ $sample: { size: 4 } }]);
+      list = await List.aggregate([{ $sample: { size: 10 } }]);
     }
     res.status(200).json(list);
   } catch (error) {

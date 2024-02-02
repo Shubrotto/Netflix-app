@@ -9,7 +9,7 @@ const cors = require("cors");
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
 const movieRouter = require("./routes/movies");
-const listRouter = require("./routes/list");
+const listRouter = require("./routes/lists");
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
