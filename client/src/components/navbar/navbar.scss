@@ -1,3 +1,5 @@
+@import url("../../App.scss");
+
 .navbar {
   color: white;
   font-size: 14px;
@@ -25,11 +27,25 @@
         height: 25px;
         margin-right: 40px;
         cursor: pointer;
+
+        @include mobile {
+          display: none;
+        }
       }
 
       span {
         margin-right: 20px;
         cursor: pointer;
+
+        @include tablet {
+          display: none;
+        }
+      }
+
+      .navbar_main_link {
+        @include tablet {
+          display: block;
+        }
       }
     }
 

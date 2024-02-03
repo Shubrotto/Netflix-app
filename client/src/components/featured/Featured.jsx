@@ -3,7 +3,7 @@ import "./featured.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const Featured = ({ type }) => {
+const Featured = ({ type, setGenre }) => {
   const [content, setContent] = useState({});
   useEffect(() => {
     const getRandomContent = async () => {
@@ -13,7 +13,7 @@ const Featured = ({ type }) => {
           {
             headers: {
               token:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODFjZWUyODczN2Y4MTNiNWRhNjdmMiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcwNjcxNjAxNCwiZXhwIjoxNzA3MTQ4MDE0fQ.JCN1zhFNjmN7W8oah5MAx8NHX-rwtQKsbsnUsQyLYwo",
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ODFjZWUyODczN2Y4MTNiNWRhNjdmMiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTcwNjg4MzkyNCwiZXhwIjoxNzA3MzE1OTI0fQ.Ws4gnSP-TP0g06ooRxE9ksYFr3pvUC-JpavGxjo8qMc",
             },
           }
         );
@@ -28,8 +28,12 @@ const Featured = ({ type }) => {
     <div className="featured">
       {type && (
         <div className="category">
-          <span>{type === "movies" ? "Movies" : "Series"}</span>
-          <select name="genre" id="genre">
+          <span>{type === "movie" ? "Movies" : "Series"}</span>
+          <select
+            name="genre"
+            id="genre"
+            onChange={(e) => setGenre(e.target.value)}
+          >
             <option>Genre</option>
             <option value="adventure">Adventure</option>
             <option value="comedy">Comedy</option>
